@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities2">
+    <EntitySetMapping Name="DETALLEPROCESO">
+      <EntityTypeMapping TypeName="Model.DETALLEPROCESO">
+        <MappingFragment StoreEntitySet="DETALLEPROCESO">
+          <ScalarProperty Name="PROCESO_IDPROCESO" ColumnName="PROCESO_IDPROCESO" />
+          <ScalarProperty Name="TAREA_IDTAREA" ColumnName="TAREA_IDTAREA" />
+          <ScalarProperty Name="TAREA_ESTADOTAR_IDESTADO" ColumnName="TAREA_ESTADOTAR_IDESTADO" />
+          <ScalarProperty Name="FDESC" ColumnName="FDESC" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DOCUMENTO">
+      <EntityTypeMapping TypeName="Model.DOCUMENTO">
+        <MappingFragment StoreEntitySet="DOCUMENTO">
+          <ScalarProperty Name="IDDOC" ColumnName="IDDOC" />
+          <ScalarProperty Name="NOMBREDOC" ColumnName="NOMBREDOC" />
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+          <ScalarProperty Name="VERSIOND" ColumnName="VERSIOND" />
+          <ScalarProperty Name="TAREA_IDTAREA" ColumnName="TAREA_IDTAREA" />
+          <ScalarProperty Name="TAREA_IDESTADO" ColumnName="TAREA_IDESTADO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EJECUCION">
+      <EntityTypeMapping TypeName="Model.EJECUCION">
+        <MappingFragment StoreEntitySet="EJECUCION">
+          <ScalarProperty Name="DESCRIPCIONEJE" ColumnName="DESCRIPCIONEJE" />
+          <ScalarProperty Name="FECHAINICIO" ColumnName="FECHAINICIO" />
+          <ScalarProperty Name="FECHATERMINO" ColumnName="FECHATERMINO" />
+          <ScalarProperty Name="FECHAEJEC" ColumnName="FECHAEJEC" />
+          <ScalarProperty Name="PERSONAL_RUT" ColumnName="PERSONAL_RUT" />
+          <ScalarProperty Name="TAREA_IDTAREA" ColumnName="TAREA_IDTAREA" />
+          <ScalarProperty Name="TAREA_IDESTADO" ColumnName="TAREA_IDESTADO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ESTADOTAR">
+      <EntityTypeMapping TypeName="Model.ESTADOTAR">
+        <MappingFragment StoreEntitySet="ESTADOTAR">
+          <ScalarProperty Name="IDESTADO" ColumnName="IDESTADO" />
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+          <ScalarProperty Name="FECHAESTAT" ColumnName="FECHAESTAT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ORGANIZACION">
+      <EntityTypeMapping TypeName="Model.ORGANIZACION">
+        <MappingFragment StoreEntitySet="ORGANIZACION">
+          <ScalarProperty Name="IDORG" ColumnName="IDORG" />
+          <ScalarProperty Name="NOMBREORG" ColumnName="NOMBREORG" />
+          <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+          <ScalarProperty Name="ORGANIGRAMA" ColumnName="ORGANIGRAMA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PERSONAL">
+      <EntityTypeMapping TypeName="Model.PERSONAL">
+        <MappingFragment StoreEntitySet="PERSONAL">
+          <ScalarProperty Name="RUT" ColumnName="RUT" />
+          <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+          <ScalarProperty Name="APEPATE" ColumnName="APEPATE" />
+          <ScalarProperty Name="APEMATE" ColumnName="APEMATE" />
+          <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+          <ScalarProperty Name="CORREO" ColumnName="CORREO" />
+          <ScalarProperty Name="CONTRASENIA" ColumnName="CONTRASENIA" />
+          <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+          <ScalarProperty Name="CARGO" ColumnName="CARGO" />
+          <ScalarProperty Name="ORGANIZACION_IDORG" ColumnName="ORGANIZACION_IDORG" />
+          <ScalarProperty Name="ENCARGADO" ColumnName="ENCARGADO" />
+          <ScalarProperty Name="PERSONAL_RUT" ColumnName="PERSONAL_RUT" />
+          <ScalarProperty Name="ROL_IDROL" ColumnName="ROL_IDROL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PROCESO">
+      <EntityTypeMapping TypeName="Model.PROCESO">
+        <MappingFragment StoreEntitySet="PROCESO">
+          <ScalarProperty Name="IDPROCESO" ColumnName="IDPROCESO" />
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ROL">
+      <EntityTypeMapping TypeName="Model.ROL">
+        <MappingFragment StoreEntitySet="ROL">
+          <ScalarProperty Name="IDROL" ColumnName="IDROL" />
+          <ScalarProperty Name="NOMBREROL" ColumnName="NOMBREROL" />
+          <ScalarProperty Name="CONTRASENIA" ColumnName="CONTRASENIA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TAREA">
+      <EntityTypeMapping TypeName="Model.TAREA">
+        <MappingFragment StoreEntitySet="TAREA">
+          <ScalarProperty Name="IDTAREA" ColumnName="IDTAREA" />
+          <ScalarProperty Name="TIPOTAREA" ColumnName="TIPOTAREA" />
+          <ScalarProperty Name="NOMBRETA" ColumnName="NOMBRETA" />
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+          <ScalarProperty Name="NOTIFICACION" ColumnName="NOTIFICACION" />
+          <ScalarProperty Name="OBSERVACION" ColumnName="OBSERVACION" />
+          <ScalarProperty Name="ASIGNACION" ColumnName="ASIGNACION" />
+          <ScalarProperty Name="ESTADOTAR_IDESTADO" ColumnName="ESTADOTAR_IDESTADO" />
+          <ScalarProperty Name="TAREA_IDTAREA" ColumnName="TAREA_IDTAREA" />
+          <ScalarProperty Name="TAREA_ESTADOTAR_IDESTADO" ColumnName="TAREA_ESTADOTAR_IDESTADO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UNIDADINTERNA">
+      <EntityTypeMapping TypeName="Model.UNIDADINTERNA">
+        <MappingFragment StoreEntitySet="UNIDADINTERNA">
+          <ScalarProperty Name="IDUNIDADINTERNA" ColumnName="IDUNIDADINTERNA" />
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+          <ScalarProperty Name="ORGANIZACION_IDORG" ColumnName="ORGANIZACION_IDORG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="PRO_CREAR_PERSONAL" FunctionName="Model.Store.PRO_CREAR_PERSONAL" />
+    <FunctionImportMapping FunctionImportName="PRO_CREAR_ROL" FunctionName="Model.Store.PRO_CREAR_ROL" />
+    <FunctionImportMapping FunctionImportName="PRO_CREAR_TAREAS" FunctionName="Model.Store.PRO_CREAR_TAREAS" />
+    <FunctionImportMapping FunctionImportName="PRO_CREAR_UNI_INTERNA" FunctionName="Model.Store.PRO_CREAR_UNI_INTERNA" />
+    <FunctionImportMapping FunctionImportName="PRO_ELIMIN_TAREA" FunctionName="Model.Store.PRO_ELIMIN_TAREA" />
+    <FunctionImportMapping FunctionImportName="PRO_ELIM_UNI_INTERNA" FunctionName="Model.Store.PRO_ELIM_UNI_INTERNA" />
+    <FunctionImportMapping FunctionImportName="PRO_ELI_PERSONAL" FunctionName="Model.Store.PRO_ELI_PERSONAL" />
+    <FunctionImportMapping FunctionImportName="PRO_ELI_ROL" FunctionName="Model.Store.PRO_ELI_ROL" />
+    <FunctionImportMapping FunctionImportName="PRO_MODIFICAR_ROL" FunctionName="Model.Store.PRO_MODIFICAR_ROL" />
+    <FunctionImportMapping FunctionImportName="PRO_MODIFICAR_UNI_INTERNA" FunctionName="Model.Store.PRO_MODIFICAR_UNI_INTERNA" />
+    <FunctionImportMapping FunctionImportName="PRO_MODIF_TAREAS" FunctionName="Model.Store.PRO_MODIF_TAREAS" />
+    <FunctionImportMapping FunctionImportName="PRO_MODI_PERSONAL" FunctionName="Model.Store.PRO_MODI_PERSONAL" />
+  </EntityContainerMapping>
+</Mapping>

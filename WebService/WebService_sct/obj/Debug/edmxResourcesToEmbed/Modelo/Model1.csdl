@@ -1,0 +1,422 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="DETALLEPROCESO">
+    <Key>
+      <PropertyRef Name="PROCESO_IDPROCESO" />
+      <PropertyRef Name="TAREA_IDTAREA" />
+      <PropertyRef Name="TAREA_ESTADOTAR_IDESTADO" />
+    </Key>
+    <Property Name="PROCESO_IDPROCESO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="TAREA_IDTAREA" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="TAREA_ESTADOTAR_IDESTADO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="FDESC" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="PROCESO" Relationship="Self.DETALLEPROCESO_PROCESO_FK" FromRole="DETALLEPROCESO" ToRole="PROCESO" />
+    <NavigationProperty Name="TAREA" Relationship="Self.DETALLEPROCESO_TAREA_FK" FromRole="DETALLEPROCESO" ToRole="TAREA" />
+  </EntityType>
+  <EntityType Name="DOCUMENTO">
+    <Key>
+      <PropertyRef Name="IDDOC" />
+    </Key>
+    <Property Name="IDDOC" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="NOMBREDOC" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="VERSIOND" Type="Decimal" Precision="3" Scale="1" Nullable="false" />
+    <Property Name="TAREA_IDTAREA" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="TAREA_IDESTADO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <NavigationProperty Name="TAREA" Relationship="Self.DOCUMENTO_TAREA_FK" FromRole="DOCUMENTO" ToRole="TAREA" />
+  </EntityType>
+  <EntityType Name="EJECUCION">
+    <Key>
+      <PropertyRef Name="PERSONAL_RUT" />
+      <PropertyRef Name="TAREA_IDTAREA" />
+      <PropertyRef Name="TAREA_IDESTADO" />
+    </Key>
+    <Property Name="DESCRIPCIONEJE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FECHAINICIO" Type="DateTime" Nullable="false" />
+    <Property Name="FECHATERMINO" Type="DateTime" Nullable="false" />
+    <Property Name="FECHAEJEC" Type="DateTime" Nullable="false" />
+    <Property Name="PERSONAL_RUT" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TAREA_IDTAREA" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="TAREA_IDESTADO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <NavigationProperty Name="PERSONAL" Relationship="Self.EJECUCION_PERSONAL_FK" FromRole="EJECUCION" ToRole="PERSONAL" />
+    <NavigationProperty Name="TAREA" Relationship="Self.EJECUCION_TAREA_FK" FromRole="EJECUCION" ToRole="TAREA" />
+  </EntityType>
+  <EntityType Name="ESTADOTAR">
+    <Key>
+      <PropertyRef Name="IDESTADO" />
+    </Key>
+    <Property Name="IDESTADO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FECHAESTAT" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="TAREA" Relationship="Self.TAREA_ESTADOTAR_FK" FromRole="ESTADOTAR" ToRole="TAREA" />
+  </EntityType>
+  <EntityType Name="ORGANIZACION">
+    <Key>
+      <PropertyRef Name="IDORG" />
+    </Key>
+    <Property Name="IDORG" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="NOMBREORG" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DIRECCION" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ORGANIGRAMA" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="PERSONAL" Relationship="Self.PERSONAL_ORGANIZACION_FK" FromRole="ORGANIZACION" ToRole="PERSONAL" />
+    <NavigationProperty Name="UNIDADINTERNA" Relationship="Self.UNIDADINTERNA_ORGANIZACION_FK" FromRole="ORGANIZACION" ToRole="UNIDADINTERNA" />
+  </EntityType>
+  <EntityType Name="PERSONAL">
+    <Key>
+      <PropertyRef Name="RUT" />
+    </Key>
+    <Property Name="RUT" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NOMBRE" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="APEPATE" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="APEMATE" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TELEFONO" Type="Int32" Nullable="false" />
+    <Property Name="CORREO" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CONTRASENIA" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ESTADO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="CARGO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ORGANIZACION_IDORG" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="ENCARGADO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PERSONAL_RUT" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ROL_IDROL" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <NavigationProperty Name="EJECUCION" Relationship="Self.EJECUCION_PERSONAL_FK" FromRole="PERSONAL" ToRole="EJECUCION" />
+    <NavigationProperty Name="ORGANIZACION" Relationship="Self.PERSONAL_ORGANIZACION_FK" FromRole="PERSONAL" ToRole="ORGANIZACION" />
+    <NavigationProperty Name="PERSONAL1" Relationship="Self.PERSONAL_PERSONAL_FK" FromRole="PERSONAL" ToRole="PERSONAL1" />
+    <NavigationProperty Name="PERSONAL2" Relationship="Self.PERSONAL_PERSONAL_FK" FromRole="PERSONAL1" ToRole="PERSONAL" />
+    <NavigationProperty Name="ROL" Relationship="Self.PERSONAL_ROL_FK" FromRole="PERSONAL" ToRole="ROL" />
+  </EntityType>
+  <EntityType Name="PROCESO">
+    <Key>
+      <PropertyRef Name="IDPROCESO" />
+    </Key>
+    <Property Name="IDPROCESO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="DETALLEPROCESO" Relationship="Self.DETALLEPROCESO_PROCESO_FK" FromRole="PROCESO" ToRole="DETALLEPROCESO" />
+  </EntityType>
+  <EntityType Name="ROL">
+    <Key>
+      <PropertyRef Name="IDROL" />
+    </Key>
+    <Property Name="IDROL" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="NOMBREROL" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CONTRASENIA" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="PERSONAL" Relationship="Self.PERSONAL_ROL_FK" FromRole="ROL" ToRole="PERSONAL" />
+  </EntityType>
+  <EntityType Name="TAREA">
+    <Key>
+      <PropertyRef Name="IDTAREA" />
+      <PropertyRef Name="ESTADOTAR_IDESTADO" />
+    </Key>
+    <Property Name="IDTAREA" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="TIPOTAREA" Type="Int16" Nullable="false" />
+    <Property Name="NOMBRETA" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NOTIFICACION" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="OBSERVACION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ASIGNACION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ESTADOTAR_IDESTADO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="TAREA_IDTAREA" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="TAREA_ESTADOTAR_IDESTADO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <NavigationProperty Name="DETALLEPROCESO" Relationship="Self.DETALLEPROCESO_TAREA_FK" FromRole="TAREA" ToRole="DETALLEPROCESO" />
+    <NavigationProperty Name="DOCUMENTO" Relationship="Self.DOCUMENTO_TAREA_FK" FromRole="TAREA" ToRole="DOCUMENTO" />
+    <NavigationProperty Name="EJECUCION" Relationship="Self.EJECUCION_TAREA_FK" FromRole="TAREA" ToRole="EJECUCION" />
+    <NavigationProperty Name="ESTADOTAR" Relationship="Self.TAREA_ESTADOTAR_FK" FromRole="TAREA" ToRole="ESTADOTAR" />
+    <NavigationProperty Name="TAREA1" Relationship="Self.TAREA_TAREA_FK" FromRole="TAREA" ToRole="TAREA1" />
+    <NavigationProperty Name="TAREA2" Relationship="Self.TAREA_TAREA_FK" FromRole="TAREA1" ToRole="TAREA" />
+  </EntityType>
+  <EntityType Name="UNIDADINTERNA">
+    <Key>
+      <PropertyRef Name="IDUNIDADINTERNA" />
+    </Key>
+    <Property Name="IDUNIDADINTERNA" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ORGANIZACION_IDORG" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <NavigationProperty Name="ORGANIZACION" Relationship="Self.UNIDADINTERNA_ORGANIZACION_FK" FromRole="UNIDADINTERNA" ToRole="ORGANIZACION" />
+  </EntityType>
+  <Association Name="DETALLEPROCESO_PROCESO_FK">
+    <End Role="PROCESO" Type="Self.PROCESO" Multiplicity="1" />
+    <End Role="DETALLEPROCESO" Type="Self.DETALLEPROCESO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROCESO">
+        <PropertyRef Name="IDPROCESO" />
+      </Principal>
+      <Dependent Role="DETALLEPROCESO">
+        <PropertyRef Name="PROCESO_IDPROCESO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DETALLEPROCESO_TAREA_FK">
+    <End Role="TAREA" Type="Self.TAREA" Multiplicity="1" />
+    <End Role="DETALLEPROCESO" Type="Self.DETALLEPROCESO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TAREA">
+        <PropertyRef Name="IDTAREA" />
+        <PropertyRef Name="ESTADOTAR_IDESTADO" />
+      </Principal>
+      <Dependent Role="DETALLEPROCESO">
+        <PropertyRef Name="TAREA_IDTAREA" />
+        <PropertyRef Name="TAREA_ESTADOTAR_IDESTADO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DOCUMENTO_TAREA_FK">
+    <End Role="TAREA" Type="Self.TAREA" Multiplicity="1" />
+    <End Role="DOCUMENTO" Type="Self.DOCUMENTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TAREA">
+        <PropertyRef Name="IDTAREA" />
+        <PropertyRef Name="ESTADOTAR_IDESTADO" />
+      </Principal>
+      <Dependent Role="DOCUMENTO">
+        <PropertyRef Name="TAREA_IDTAREA" />
+        <PropertyRef Name="TAREA_IDESTADO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EJECUCION_PERSONAL_FK">
+    <End Role="PERSONAL" Type="Self.PERSONAL" Multiplicity="1" />
+    <End Role="EJECUCION" Type="Self.EJECUCION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PERSONAL">
+        <PropertyRef Name="RUT" />
+      </Principal>
+      <Dependent Role="EJECUCION">
+        <PropertyRef Name="PERSONAL_RUT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EJECUCION_TAREA_FK">
+    <End Role="TAREA" Type="Self.TAREA" Multiplicity="1" />
+    <End Role="EJECUCION" Type="Self.EJECUCION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TAREA">
+        <PropertyRef Name="IDTAREA" />
+        <PropertyRef Name="ESTADOTAR_IDESTADO" />
+      </Principal>
+      <Dependent Role="EJECUCION">
+        <PropertyRef Name="TAREA_IDTAREA" />
+        <PropertyRef Name="TAREA_IDESTADO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TAREA_ESTADOTAR_FK">
+    <End Role="ESTADOTAR" Type="Self.ESTADOTAR" Multiplicity="1" />
+    <End Role="TAREA" Type="Self.TAREA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ESTADOTAR">
+        <PropertyRef Name="IDESTADO" />
+      </Principal>
+      <Dependent Role="TAREA">
+        <PropertyRef Name="ESTADOTAR_IDESTADO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PERSONAL_ORGANIZACION_FK">
+    <End Role="ORGANIZACION" Type="Self.ORGANIZACION" Multiplicity="1" />
+    <End Role="PERSONAL" Type="Self.PERSONAL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ORGANIZACION">
+        <PropertyRef Name="IDORG" />
+      </Principal>
+      <Dependent Role="PERSONAL">
+        <PropertyRef Name="ORGANIZACION_IDORG" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UNIDADINTERNA_ORGANIZACION_FK">
+    <End Role="ORGANIZACION" Type="Self.ORGANIZACION" Multiplicity="1" />
+    <End Role="UNIDADINTERNA" Type="Self.UNIDADINTERNA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ORGANIZACION">
+        <PropertyRef Name="IDORG" />
+      </Principal>
+      <Dependent Role="UNIDADINTERNA">
+        <PropertyRef Name="ORGANIZACION_IDORG" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PERSONAL_PERSONAL_FK">
+    <End Role="PERSONAL" Type="Self.PERSONAL" Multiplicity="1" />
+    <End Role="PERSONAL1" Type="Self.PERSONAL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PERSONAL">
+        <PropertyRef Name="RUT" />
+      </Principal>
+      <Dependent Role="PERSONAL1">
+        <PropertyRef Name="PERSONAL_RUT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PERSONAL_ROL_FK">
+    <End Role="ROL" Type="Self.ROL" Multiplicity="1" />
+    <End Role="PERSONAL" Type="Self.PERSONAL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ROL">
+        <PropertyRef Name="IDROL" />
+      </Principal>
+      <Dependent Role="PERSONAL">
+        <PropertyRef Name="ROL_IDROL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TAREA_TAREA_FK">
+    <End Role="TAREA" Type="Self.TAREA" Multiplicity="1" />
+    <End Role="TAREA1" Type="Self.TAREA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TAREA">
+        <PropertyRef Name="IDTAREA" />
+        <PropertyRef Name="ESTADOTAR_IDESTADO" />
+      </Principal>
+      <Dependent Role="TAREA1">
+        <PropertyRef Name="TAREA_IDTAREA" />
+        <PropertyRef Name="TAREA_ESTADOTAR_IDESTADO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Entities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="DETALLEPROCESO" EntityType="Self.DETALLEPROCESO" />
+    <EntitySet Name="DOCUMENTO" EntityType="Self.DOCUMENTO" />
+    <EntitySet Name="EJECUCION" EntityType="Self.EJECUCION" />
+    <EntitySet Name="ESTADOTAR" EntityType="Self.ESTADOTAR" />
+    <EntitySet Name="ORGANIZACION" EntityType="Self.ORGANIZACION" />
+    <EntitySet Name="PERSONAL" EntityType="Self.PERSONAL" />
+    <EntitySet Name="PROCESO" EntityType="Self.PROCESO" />
+    <EntitySet Name="ROL" EntityType="Self.ROL" />
+    <EntitySet Name="TAREA" EntityType="Self.TAREA" />
+    <EntitySet Name="UNIDADINTERNA" EntityType="Self.UNIDADINTERNA" />
+    <AssociationSet Name="DETALLEPROCESO_PROCESO_FK" Association="Self.DETALLEPROCESO_PROCESO_FK">
+      <End Role="PROCESO" EntitySet="PROCESO" />
+      <End Role="DETALLEPROCESO" EntitySet="DETALLEPROCESO" />
+    </AssociationSet>
+    <AssociationSet Name="DETALLEPROCESO_TAREA_FK" Association="Self.DETALLEPROCESO_TAREA_FK">
+      <End Role="TAREA" EntitySet="TAREA" />
+      <End Role="DETALLEPROCESO" EntitySet="DETALLEPROCESO" />
+    </AssociationSet>
+    <AssociationSet Name="DOCUMENTO_TAREA_FK" Association="Self.DOCUMENTO_TAREA_FK">
+      <End Role="TAREA" EntitySet="TAREA" />
+      <End Role="DOCUMENTO" EntitySet="DOCUMENTO" />
+    </AssociationSet>
+    <AssociationSet Name="EJECUCION_PERSONAL_FK" Association="Self.EJECUCION_PERSONAL_FK">
+      <End Role="PERSONAL" EntitySet="PERSONAL" />
+      <End Role="EJECUCION" EntitySet="EJECUCION" />
+    </AssociationSet>
+    <AssociationSet Name="EJECUCION_TAREA_FK" Association="Self.EJECUCION_TAREA_FK">
+      <End Role="TAREA" EntitySet="TAREA" />
+      <End Role="EJECUCION" EntitySet="EJECUCION" />
+    </AssociationSet>
+    <AssociationSet Name="TAREA_ESTADOTAR_FK" Association="Self.TAREA_ESTADOTAR_FK">
+      <End Role="ESTADOTAR" EntitySet="ESTADOTAR" />
+      <End Role="TAREA" EntitySet="TAREA" />
+    </AssociationSet>
+    <AssociationSet Name="PERSONAL_ORGANIZACION_FK" Association="Self.PERSONAL_ORGANIZACION_FK">
+      <End Role="ORGANIZACION" EntitySet="ORGANIZACION" />
+      <End Role="PERSONAL" EntitySet="PERSONAL" />
+    </AssociationSet>
+    <AssociationSet Name="UNIDADINTERNA_ORGANIZACION_FK" Association="Self.UNIDADINTERNA_ORGANIZACION_FK">
+      <End Role="ORGANIZACION" EntitySet="ORGANIZACION" />
+      <End Role="UNIDADINTERNA" EntitySet="UNIDADINTERNA" />
+    </AssociationSet>
+    <AssociationSet Name="PERSONAL_PERSONAL_FK" Association="Self.PERSONAL_PERSONAL_FK">
+      <End Role="PERSONAL" EntitySet="PERSONAL" />
+      <End Role="PERSONAL1" EntitySet="PERSONAL" />
+    </AssociationSet>
+    <AssociationSet Name="PERSONAL_ROL_FK" Association="Self.PERSONAL_ROL_FK">
+      <End Role="ROL" EntitySet="ROL" />
+      <End Role="PERSONAL" EntitySet="PERSONAL" />
+    </AssociationSet>
+    <AssociationSet Name="TAREA_TAREA_FK" Association="Self.TAREA_TAREA_FK">
+      <End Role="TAREA" EntitySet="TAREA" />
+      <End Role="TAREA1" EntitySet="TAREA" />
+    </AssociationSet>
+    <FunctionImport Name="PRO_CREAR_PERSONAL">
+      <Parameter Name="RUTPER" Mode="In" Type="String" />
+      <Parameter Name="NOMPER" Mode="In" Type="String" />
+      <Parameter Name="APPATER" Mode="In" Type="String" />
+      <Parameter Name="APMATER" Mode="In" Type="String" />
+      <Parameter Name="TELEF" Mode="In" Type="Decimal" />
+      <Parameter Name="CORREOO" Mode="In" Type="String" />
+      <Parameter Name="CONTRA" Mode="In" Type="String" />
+      <Parameter Name="ESTAD" Mode="In" Type="String" />
+      <Parameter Name="CARGOO" Mode="In" Type="String" />
+      <Parameter Name="ORIDORG" Mode="In" Type="Decimal" />
+      <Parameter Name="ENCARG" Mode="In" Type="String" />
+      <Parameter Name="PERSORUT" Mode="In" Type="String" />
+      <Parameter Name="ROL_ID" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="PRO_CREAR_ROL">
+      <Parameter Name="ROL_ID" Mode="In" Type="Decimal" />
+      <Parameter Name="ROL_NOMB" Mode="In" Type="String" />
+      <Parameter Name="CONTRASENA" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PRO_CREAR_TAREAS">
+      <Parameter Name="TAREAID" Mode="In" Type="Decimal" />
+      <Parameter Name="TIPOTA" Mode="In" Type="Decimal" />
+      <Parameter Name="TANOMBRE" Mode="In" Type="String" />
+      <Parameter Name="DESCRIPC" Mode="In" Type="String" />
+      <Parameter Name="NOTI" Mode="In" Type="String" />
+      <Parameter Name="OBSER" Mode="In" Type="String" />
+      <Parameter Name="ASIG" Mode="In" Type="String" />
+      <Parameter Name="ESTTARIEDT" Mode="In" Type="Decimal" />
+      <Parameter Name="TAIDTA" Mode="In" Type="Decimal" />
+      <Parameter Name="TSAEDIDES" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="PRO_CREAR_UNI_INTERNA">
+      <Parameter Name="IDUNIDAINTE" Mode="In" Type="Decimal" />
+      <Parameter Name="DESCRIP" Mode="In" Type="String" />
+      <Parameter Name="OR_IDORG" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="PRO_ELIMIN_TAREA">
+      <Parameter Name="TAREAID" Mode="In" Type="Decimal" />
+      <Parameter Name="TIPOTA" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="PRO_ELIM_UNI_INTERNA">
+      <Parameter Name="IDUNIDAINTE" Mode="In" Type="Decimal" />
+      <Parameter Name="DESCRIP" Mode="In" Type="String" />
+      <Parameter Name="OR_IDORG" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="PRO_ELI_PERSONAL">
+      <Parameter Name="RUTPER" Mode="In" Type="String" />
+      <Parameter Name="NOMPER" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PRO_ELI_ROL">
+      <Parameter Name="ROL_ID" Mode="In" Type="Decimal" />
+      <Parameter Name="ROL_NOM" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PRO_MODIFICAR_ROL">
+      <Parameter Name="ROL_ID" Mode="In" Type="Decimal" />
+      <Parameter Name="ROL_NOMB" Mode="In" Type="String" />
+      <Parameter Name="CONTRASENA" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PRO_MODIFICAR_UNI_INTERNA">
+      <Parameter Name="IDUNIDAINTE" Mode="In" Type="Decimal" />
+      <Parameter Name="DESCRIP" Mode="In" Type="String" />
+      <Parameter Name="OR_IDORG" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="PRO_MODIF_TAREAS">
+      <Parameter Name="TAREAID" Mode="In" Type="Decimal" />
+      <Parameter Name="TIPOTA" Mode="In" Type="Decimal" />
+      <Parameter Name="TANOMBRE" Mode="In" Type="String" />
+      <Parameter Name="DESCRIPC" Mode="In" Type="String" />
+      <Parameter Name="NOTI" Mode="In" Type="String" />
+      <Parameter Name="OBSER" Mode="In" Type="String" />
+      <Parameter Name="ASIG" Mode="In" Type="String" />
+      <Parameter Name="ESTTARIEDT" Mode="In" Type="Decimal" />
+      <Parameter Name="TAIDTA" Mode="In" Type="Decimal" />
+      <Parameter Name="TSAEDIDES" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="PRO_MODI_PERSONAL">
+      <Parameter Name="RUTPER" Mode="In" Type="String" />
+      <Parameter Name="NOMPER" Mode="In" Type="String" />
+      <Parameter Name="APPATER" Mode="In" Type="String" />
+      <Parameter Name="APMATER" Mode="In" Type="String" />
+      <Parameter Name="TELEF" Mode="In" Type="Decimal" />
+      <Parameter Name="CORREOO" Mode="In" Type="String" />
+      <Parameter Name="CONTRA" Mode="In" Type="String" />
+      <Parameter Name="ESTAD" Mode="In" Type="String" />
+      <Parameter Name="CARGOO" Mode="In" Type="String" />
+      <Parameter Name="ORIDORG" Mode="In" Type="Decimal" />
+      <Parameter Name="ENCARG" Mode="In" Type="String" />
+      <Parameter Name="PERSORUT" Mode="In" Type="String" />
+      <Parameter Name="ROL_ID" Mode="In" Type="Decimal" />
+    </FunctionImport>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,400 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model.Store" Provider="Oracle.DataAccess.Client" ProviderManifestToken="18.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="DETALLEPROCESO">
+    <Key>
+      <PropertyRef Name="PROCESO_IDPROCESO" />
+      <PropertyRef Name="TAREA_IDTAREA" />
+      <PropertyRef Name="TAREA_ESTADOTAR_IDESTADO" />
+    </Key>
+    <Property Name="PROCESO_IDPROCESO" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="TAREA_IDTAREA" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="TAREA_ESTADOTAR_IDESTADO" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="FDESC" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DOCUMENTO">
+    <Key>
+      <PropertyRef Name="IDDOC" />
+    </Key>
+    <Property Name="IDDOC" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="NOMBREDOC" Type="varchar2" MaxLength="20" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="varchar2" MaxLength="50" Nullable="false" />
+    <Property Name="VERSIOND" Type="number" Precision="3" Scale="1" Nullable="false" />
+    <Property Name="TAREA_IDTAREA" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="TAREA_IDESTADO" Type="number" Precision="38" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EJECUCION">
+    <Key>
+      <PropertyRef Name="PERSONAL_RUT" />
+      <PropertyRef Name="TAREA_IDTAREA" />
+      <PropertyRef Name="TAREA_IDESTADO" />
+    </Key>
+    <Property Name="DESCRIPCIONEJE" Type="varchar2" MaxLength="100" Nullable="false" />
+    <Property Name="FECHAINICIO" Type="date" Nullable="false" />
+    <Property Name="FECHATERMINO" Type="date" Nullable="false" />
+    <Property Name="FECHAEJEC" Type="date" Nullable="false" />
+    <Property Name="PERSONAL_RUT" Type="varchar2" MaxLength="12" Nullable="false" />
+    <Property Name="TAREA_IDTAREA" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="TAREA_IDESTADO" Type="number" Precision="38" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ESTADOTAR">
+    <Key>
+      <PropertyRef Name="IDESTADO" />
+    </Key>
+    <Property Name="IDESTADO" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="varchar2" MaxLength="100" Nullable="false" />
+    <Property Name="FECHAESTAT" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ORGANIZACION">
+    <Key>
+      <PropertyRef Name="IDORG" />
+    </Key>
+    <Property Name="IDORG" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="NOMBREORG" Type="varchar2" MaxLength="15" Nullable="false" />
+    <Property Name="DIRECCION" Type="varchar2" MaxLength="30" Nullable="false" />
+    <Property Name="ORGANIGRAMA" Type="clob" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PERSONAL">
+    <Key>
+      <PropertyRef Name="RUT" />
+    </Key>
+    <Property Name="RUT" Type="varchar2" MaxLength="12" Nullable="false" />
+    <Property Name="NOMBRE" Type="varchar2" MaxLength="15" Nullable="false" />
+    <Property Name="APEPATE" Type="varchar2" MaxLength="15" Nullable="false" />
+    <Property Name="APEMATE" Type="varchar2" MaxLength="15" Nullable="false" />
+    <Property Name="TELEFONO" Type="number" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="CORREO" Type="varchar2" MaxLength="40" Nullable="false" />
+    <Property Name="CONTRASENIA" Type="varchar2" MaxLength="15" Nullable="false" />
+    <Property Name="ESTADO" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="CARGO" Type="varchar2" MaxLength="10" Nullable="false" />
+    <Property Name="ORGANIZACION_IDORG" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="ENCARGADO" Type="varchar2" MaxLength="50" Nullable="false" />
+    <Property Name="PERSONAL_RUT" Type="varchar2" MaxLength="12" Nullable="false" />
+    <Property Name="ROL_IDROL" Type="number" Precision="38" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PROCESO">
+    <Key>
+      <PropertyRef Name="IDPROCESO" />
+    </Key>
+    <Property Name="IDPROCESO" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="varchar2" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ROL">
+    <Key>
+      <PropertyRef Name="IDROL" />
+    </Key>
+    <Property Name="IDROL" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="NOMBREROL" Type="varchar2" MaxLength="10" Nullable="false" />
+    <Property Name="CONTRASENIA" Type="varchar2" MaxLength="15" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TAREA">
+    <Key>
+      <PropertyRef Name="IDTAREA" />
+      <PropertyRef Name="ESTADOTAR_IDESTADO" />
+    </Key>
+    <Property Name="IDTAREA" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="TIPOTAREA" Type="number" Precision="2" Scale="0" Nullable="false" />
+    <Property Name="NOMBRETA" Type="varchar2" MaxLength="20" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="varchar2" MaxLength="50" Nullable="false" />
+    <Property Name="NOTIFICACION" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="OBSERVACION" Type="varchar2" MaxLength="100" />
+    <Property Name="ASIGNACION" Type="varchar2" MaxLength="50" Nullable="false" />
+    <Property Name="ESTADOTAR_IDESTADO" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="TAREA_IDTAREA" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="TAREA_ESTADOTAR_IDESTADO" Type="number" Precision="38" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UNIDADINTERNA">
+    <Key>
+      <PropertyRef Name="IDUNIDADINTERNA" />
+    </Key>
+    <Property Name="IDUNIDADINTERNA" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="varchar2" MaxLength="100" Nullable="false" />
+    <Property Name="ORGANIZACION_IDORG" Type="number" Precision="38" Scale="0" Nullable="false" />
+  </EntityType>
+  <Association Name="DETALLEPROCESO_PROCESO_FK">
+    <End Role="PROCESO" Type="Self.PROCESO" Multiplicity="1" />
+    <End Role="DETALLEPROCESO" Type="Self.DETALLEPROCESO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROCESO">
+        <PropertyRef Name="IDPROCESO" />
+      </Principal>
+      <Dependent Role="DETALLEPROCESO">
+        <PropertyRef Name="PROCESO_IDPROCESO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DETALLEPROCESO_TAREA_FK">
+    <End Role="TAREA" Type="Self.TAREA" Multiplicity="1" />
+    <End Role="DETALLEPROCESO" Type="Self.DETALLEPROCESO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TAREA">
+        <PropertyRef Name="IDTAREA" />
+        <PropertyRef Name="ESTADOTAR_IDESTADO" />
+      </Principal>
+      <Dependent Role="DETALLEPROCESO">
+        <PropertyRef Name="TAREA_IDTAREA" />
+        <PropertyRef Name="TAREA_ESTADOTAR_IDESTADO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DOCUMENTO_TAREA_FK">
+    <End Role="TAREA" Type="Self.TAREA" Multiplicity="1" />
+    <End Role="DOCUMENTO" Type="Self.DOCUMENTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TAREA">
+        <PropertyRef Name="IDTAREA" />
+        <PropertyRef Name="ESTADOTAR_IDESTADO" />
+      </Principal>
+      <Dependent Role="DOCUMENTO">
+        <PropertyRef Name="TAREA_IDTAREA" />
+        <PropertyRef Name="TAREA_IDESTADO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EJECUCION_PERSONAL_FK">
+    <End Role="PERSONAL" Type="Self.PERSONAL" Multiplicity="1" />
+    <End Role="EJECUCION" Type="Self.EJECUCION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PERSONAL">
+        <PropertyRef Name="RUT" />
+      </Principal>
+      <Dependent Role="EJECUCION">
+        <PropertyRef Name="PERSONAL_RUT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EJECUCION_TAREA_FK">
+    <End Role="TAREA" Type="Self.TAREA" Multiplicity="1" />
+    <End Role="EJECUCION" Type="Self.EJECUCION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TAREA">
+        <PropertyRef Name="IDTAREA" />
+        <PropertyRef Name="ESTADOTAR_IDESTADO" />
+      </Principal>
+      <Dependent Role="EJECUCION">
+        <PropertyRef Name="TAREA_IDTAREA" />
+        <PropertyRef Name="TAREA_IDESTADO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PERSONAL_ORGANIZACION_FK">
+    <End Role="ORGANIZACION" Type="Self.ORGANIZACION" Multiplicity="1" />
+    <End Role="PERSONAL" Type="Self.PERSONAL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ORGANIZACION">
+        <PropertyRef Name="IDORG" />
+      </Principal>
+      <Dependent Role="PERSONAL">
+        <PropertyRef Name="ORGANIZACION_IDORG" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PERSONAL_PERSONAL_FK">
+    <End Role="PERSONAL" Type="Self.PERSONAL" Multiplicity="1" />
+    <End Role="PERSONAL1" Type="Self.PERSONAL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PERSONAL">
+        <PropertyRef Name="RUT" />
+      </Principal>
+      <Dependent Role="PERSONAL1">
+        <PropertyRef Name="PERSONAL_RUT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PERSONAL_ROL_FK">
+    <End Role="ROL" Type="Self.ROL" Multiplicity="1" />
+    <End Role="PERSONAL" Type="Self.PERSONAL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ROL">
+        <PropertyRef Name="IDROL" />
+      </Principal>
+      <Dependent Role="PERSONAL">
+        <PropertyRef Name="ROL_IDROL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TAREA_ESTADOTAR_FK">
+    <End Role="ESTADOTAR" Type="Self.ESTADOTAR" Multiplicity="1" />
+    <End Role="TAREA" Type="Self.TAREA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ESTADOTAR">
+        <PropertyRef Name="IDESTADO" />
+      </Principal>
+      <Dependent Role="TAREA">
+        <PropertyRef Name="ESTADOTAR_IDESTADO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TAREA_TAREA_FK">
+    <End Role="TAREA" Type="Self.TAREA" Multiplicity="1" />
+    <End Role="TAREA1" Type="Self.TAREA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TAREA">
+        <PropertyRef Name="IDTAREA" />
+        <PropertyRef Name="ESTADOTAR_IDESTADO" />
+      </Principal>
+      <Dependent Role="TAREA1">
+        <PropertyRef Name="TAREA_IDTAREA" />
+        <PropertyRef Name="TAREA_ESTADOTAR_IDESTADO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UNIDADINTERNA_ORGANIZACION_FK">
+    <End Role="ORGANIZACION" Type="Self.ORGANIZACION" Multiplicity="1" />
+    <End Role="UNIDADINTERNA" Type="Self.UNIDADINTERNA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ORGANIZACION">
+        <PropertyRef Name="IDORG" />
+      </Principal>
+      <Dependent Role="UNIDADINTERNA">
+        <PropertyRef Name="ORGANIZACION_IDORG" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="PRO_CREAR_PERSONAL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DUOC">
+    <Parameter Name="RUTPER" Type="varchar2" Mode="In" />
+    <Parameter Name="NOMPER" Type="varchar2" Mode="In" />
+    <Parameter Name="APPATER" Type="varchar2" Mode="In" />
+    <Parameter Name="APMATER" Type="varchar2" Mode="In" />
+    <Parameter Name="TELEF" Type="number" Mode="In" />
+    <Parameter Name="CORREOO" Type="varchar2" Mode="In" />
+    <Parameter Name="CONTRA" Type="varchar2" Mode="In" />
+    <Parameter Name="ESTAD" Type="char" Mode="In" />
+    <Parameter Name="CARGOO" Type="varchar2" Mode="In" />
+    <Parameter Name="ORIDORG" Type="number" Mode="In" />
+    <Parameter Name="ENCARG" Type="varchar2" Mode="In" />
+    <Parameter Name="PERSORUT" Type="varchar2" Mode="In" />
+    <Parameter Name="ROL_ID" Type="number" Mode="In" />
+  </Function>
+  <Function Name="PRO_CREAR_ROL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DUOC">
+    <Parameter Name="ROL_ID" Type="number" Mode="In" />
+    <Parameter Name="ROL_NOMB" Type="varchar2" Mode="In" />
+    <Parameter Name="CONTRASENA" Type="varchar2" Mode="In" />
+  </Function>
+  <Function Name="PRO_CREAR_TAREAS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DUOC">
+    <Parameter Name="TAREAID" Type="number" Mode="In" />
+    <Parameter Name="TIPOTA" Type="number" Mode="In" />
+    <Parameter Name="TANOMBRE" Type="varchar2" Mode="In" />
+    <Parameter Name="DESCRIPC" Type="varchar2" Mode="In" />
+    <Parameter Name="NOTI" Type="char" Mode="In" />
+    <Parameter Name="OBSER" Type="varchar2" Mode="In" />
+    <Parameter Name="ASIG" Type="varchar2" Mode="In" />
+    <Parameter Name="ESTTARIEDT" Type="number" Mode="In" />
+    <Parameter Name="TAIDTA" Type="number" Mode="In" />
+    <Parameter Name="TSAEDIDES" Type="number" Mode="In" />
+  </Function>
+  <Function Name="PRO_CREAR_UNI_INTERNA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DUOC">
+    <Parameter Name="IDUNIDAINTE" Type="number" Mode="In" />
+    <Parameter Name="DESCRIP" Type="varchar2" Mode="In" />
+    <Parameter Name="OR_IDORG" Type="number" Mode="In" />
+  </Function>
+  <Function Name="PRO_ELIMIN_TAREA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DUOC">
+    <Parameter Name="TAREAID" Type="number" Mode="In" />
+    <Parameter Name="TIPOTA" Type="number" Mode="In" />
+  </Function>
+  <Function Name="PRO_ELIM_UNI_INTERNA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DUOC">
+    <Parameter Name="IDUNIDAINTE" Type="number" Mode="In" />
+    <Parameter Name="DESCRIP" Type="varchar2" Mode="In" />
+    <Parameter Name="OR_IDORG" Type="number" Mode="In" />
+  </Function>
+  <Function Name="PRO_ELI_PERSONAL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DUOC">
+    <Parameter Name="RUTPER" Type="varchar2" Mode="In" />
+    <Parameter Name="NOMPER" Type="varchar2" Mode="In" />
+  </Function>
+  <Function Name="PRO_ELI_ROL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DUOC">
+    <Parameter Name="ROL_ID" Type="number" Mode="In" />
+    <Parameter Name="ROL_NOM" Type="varchar2" Mode="In" />
+  </Function>
+  <Function Name="PRO_MODIFICAR_ROL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DUOC">
+    <Parameter Name="ROL_ID" Type="number" Mode="In" />
+    <Parameter Name="ROL_NOMB" Type="varchar2" Mode="In" />
+    <Parameter Name="CONTRASENA" Type="varchar2" Mode="In" />
+  </Function>
+  <Function Name="PRO_MODIFICAR_UNI_INTERNA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DUOC">
+    <Parameter Name="IDUNIDAINTE" Type="number" Mode="In" />
+    <Parameter Name="DESCRIP" Type="varchar2" Mode="In" />
+    <Parameter Name="OR_IDORG" Type="number" Mode="In" />
+  </Function>
+  <Function Name="PRO_MODIF_TAREAS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DUOC">
+    <Parameter Name="TAREAID" Type="number" Mode="In" />
+    <Parameter Name="TIPOTA" Type="number" Mode="In" />
+    <Parameter Name="TANOMBRE" Type="varchar2" Mode="In" />
+    <Parameter Name="DESCRIPC" Type="varchar2" Mode="In" />
+    <Parameter Name="NOTI" Type="char" Mode="In" />
+    <Parameter Name="OBSER" Type="varchar2" Mode="In" />
+    <Parameter Name="ASIG" Type="varchar2" Mode="In" />
+    <Parameter Name="ESTTARIEDT" Type="number" Mode="In" />
+    <Parameter Name="TAIDTA" Type="number" Mode="In" />
+    <Parameter Name="TSAEDIDES" Type="number" Mode="In" />
+  </Function>
+  <Function Name="PRO_MODI_PERSONAL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DUOC">
+    <Parameter Name="RUTPER" Type="varchar2" Mode="In" />
+    <Parameter Name="NOMPER" Type="varchar2" Mode="In" />
+    <Parameter Name="APPATER" Type="varchar2" Mode="In" />
+    <Parameter Name="APMATER" Type="varchar2" Mode="In" />
+    <Parameter Name="TELEF" Type="number" Mode="In" />
+    <Parameter Name="CORREOO" Type="varchar2" Mode="In" />
+    <Parameter Name="CONTRA" Type="varchar2" Mode="In" />
+    <Parameter Name="ESTAD" Type="char" Mode="In" />
+    <Parameter Name="CARGOO" Type="varchar2" Mode="In" />
+    <Parameter Name="ORIDORG" Type="number" Mode="In" />
+    <Parameter Name="ENCARG" Type="varchar2" Mode="In" />
+    <Parameter Name="PERSORUT" Type="varchar2" Mode="In" />
+    <Parameter Name="ROL_ID" Type="number" Mode="In" />
+  </Function>
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="DETALLEPROCESO" EntityType="Self.DETALLEPROCESO" Schema="DUOC" store:Type="Tables" />
+    <EntitySet Name="DOCUMENTO" EntityType="Self.DOCUMENTO" Schema="DUOC" store:Type="Tables" />
+    <EntitySet Name="EJECUCION" EntityType="Self.EJECUCION" Schema="DUOC" store:Type="Tables" />
+    <EntitySet Name="ESTADOTAR" EntityType="Self.ESTADOTAR" Schema="DUOC" store:Type="Tables" />
+    <EntitySet Name="ORGANIZACION" EntityType="Self.ORGANIZACION" Schema="DUOC" store:Type="Tables" />
+    <EntitySet Name="PERSONAL" EntityType="Self.PERSONAL" Schema="DUOC" store:Type="Tables" />
+    <EntitySet Name="PROCESO" EntityType="Self.PROCESO" Schema="DUOC" store:Type="Tables" />
+    <EntitySet Name="ROL" EntityType="Self.ROL" Schema="DUOC" store:Type="Tables" />
+    <EntitySet Name="TAREA" EntityType="Self.TAREA" Schema="DUOC" store:Type="Tables" />
+    <EntitySet Name="UNIDADINTERNA" EntityType="Self.UNIDADINTERNA" Schema="DUOC" store:Type="Tables" />
+    <AssociationSet Name="DETALLEPROCESO_PROCESO_FK" Association="Self.DETALLEPROCESO_PROCESO_FK">
+      <End Role="PROCESO" EntitySet="PROCESO" />
+      <End Role="DETALLEPROCESO" EntitySet="DETALLEPROCESO" />
+    </AssociationSet>
+    <AssociationSet Name="DETALLEPROCESO_TAREA_FK" Association="Self.DETALLEPROCESO_TAREA_FK">
+      <End Role="TAREA" EntitySet="TAREA" />
+      <End Role="DETALLEPROCESO" EntitySet="DETALLEPROCESO" />
+    </AssociationSet>
+    <AssociationSet Name="DOCUMENTO_TAREA_FK" Association="Self.DOCUMENTO_TAREA_FK">
+      <End Role="TAREA" EntitySet="TAREA" />
+      <End Role="DOCUMENTO" EntitySet="DOCUMENTO" />
+    </AssociationSet>
+    <AssociationSet Name="EJECUCION_PERSONAL_FK" Association="Self.EJECUCION_PERSONAL_FK">
+      <End Role="PERSONAL" EntitySet="PERSONAL" />
+      <End Role="EJECUCION" EntitySet="EJECUCION" />
+    </AssociationSet>
+    <AssociationSet Name="EJECUCION_TAREA_FK" Association="Self.EJECUCION_TAREA_FK">
+      <End Role="TAREA" EntitySet="TAREA" />
+      <End Role="EJECUCION" EntitySet="EJECUCION" />
+    </AssociationSet>
+    <AssociationSet Name="PERSONAL_ORGANIZACION_FK" Association="Self.PERSONAL_ORGANIZACION_FK">
+      <End Role="ORGANIZACION" EntitySet="ORGANIZACION" />
+      <End Role="PERSONAL" EntitySet="PERSONAL" />
+    </AssociationSet>
+    <AssociationSet Name="PERSONAL_PERSONAL_FK" Association="Self.PERSONAL_PERSONAL_FK">
+      <End Role="PERSONAL" EntitySet="PERSONAL" />
+      <End Role="PERSONAL1" EntitySet="PERSONAL" />
+    </AssociationSet>
+    <AssociationSet Name="PERSONAL_ROL_FK" Association="Self.PERSONAL_ROL_FK">
+      <End Role="ROL" EntitySet="ROL" />
+      <End Role="PERSONAL" EntitySet="PERSONAL" />
+    </AssociationSet>
+    <AssociationSet Name="TAREA_ESTADOTAR_FK" Association="Self.TAREA_ESTADOTAR_FK">
+      <End Role="ESTADOTAR" EntitySet="ESTADOTAR" />
+      <End Role="TAREA" EntitySet="TAREA" />
+    </AssociationSet>
+    <AssociationSet Name="TAREA_TAREA_FK" Association="Self.TAREA_TAREA_FK">
+      <End Role="TAREA" EntitySet="TAREA" />
+      <End Role="TAREA1" EntitySet="TAREA" />
+    </AssociationSet>
+    <AssociationSet Name="UNIDADINTERNA_ORGANIZACION_FK" Association="Self.UNIDADINTERNA_ORGANIZACION_FK">
+      <End Role="ORGANIZACION" EntitySet="ORGANIZACION" />
+      <End Role="UNIDADINTERNA" EntitySet="UNIDADINTERNA" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
